@@ -13,9 +13,16 @@ describe('The tic tac toe game', () => {
         expect(game.getBoard()).toEqual([ null, null, null, null, null, null, null, null, null ]);
     });
 
-    it('allow player to make a move on unoccupied position', () => {
+    it('should allow player to make a move on unoccupied position', () => {
         game.startGame();
         game.makeMove(0);
+        expect(game.getBoard()).toEqual([ 'X', null, null, null, null, null, null, null, null ]);
+    });
+
+    it('should not allow to make a move on already taken position', () => {
+        game.startGame();
+        game.makeMove(0);
+        expect(() => game.makeMove(0)).toThrowError('Invalid move');
         expect(game.getBoard()).toEqual([ 'X', null, null, null, null, null, null, null, null ]);
     });
 
